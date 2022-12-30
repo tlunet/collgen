@@ -19,3 +19,13 @@ nodes, Q, weights = genCollFromRK('RK4')
 dt, f = sy.symbols(r'\Delta{t} f')
 
 coll = sy.eye(5) - dt*Q*f
+
+coll[-1, 0] = -sy.Rational(1, 6)*dt*f
+coll[-1, -2] = -sy.Rational(1, 6)*dt*f
+coll[1, 0] = -sy.Rational(1, 2)*dt*f
+coll[2, 1] = -sy.Rational(1, 2)*dt*f
+coll[3, 2] = -dt*f
+coll[-1, 1] = -sy.Rational(1, 3)*dt*f
+coll[-1, 2] = -sy.Rational(1, 3)*dt*f
+
+# Node-to-node formulation !!!
