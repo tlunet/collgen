@@ -48,7 +48,7 @@ From this can be derived additional research topics that could merge technics us
 ## Repository structure
 
 - [grib](./grib/README.md) : all the notes, reports, articles etc ... on the main and derived topics.
-- [python](./python) : python code ([library](./python/code/README.md), [scripts](./python/scripts/README.md) and [notebooks](./python/notebook/README.md)).
+- [python](./python) : python code ([library](./python/collgen/README.md), [scripts](./python/scripts/README.md) and [notebooks](./python/notebook/README.md)).
 
 ## Starting points
 
