@@ -23,8 +23,7 @@ $$
 
 where ${\bf u}_0 = [u_0, u_0, \dots, u_0]^T$ and
 $Q\otimes f$ is the non-linear operator evaluating the matrix vector product between $Q$ and
-$[f(u(\tau_1), \tau_1), [f(u(\tau_2), \tau_2),
-\dots,[f(u(\tau_M), \tau_M)]^T$.
+$[f(u(\tau_1), \tau_1), [f(u(\tau_2), \tau_2),\dots,[f(u(\tau_M), \tau_M)]^T$.
 
 There is a link between Runge-Kutta method and collocation method in the unconscious scientific culture of applied mathematics, but it seems to have fadded over the years as the people who found it too easy to write it down died progressively. So here is the main question :
 
