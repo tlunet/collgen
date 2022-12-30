@@ -5,13 +5,15 @@
 Let consider the generic non-linear ODE problem
 
 $$
-\frac{du}{dt} = f(u,t), \quad u(0) = u_0,
+\frac{du}{dt} = f(u,t), \quad u(t_0) = u_0,
 $$
 
-solved for one given time step between $[0, \Delta{t}]$.
+solved for one given time step of size $\Delta{t}$
+between $[t_0, t_1]$.
 
 A generic collocation method consider the solution at nodes
-$\tau_1, \tau_2, \dots, \tau_M$ distributed on $[0, \Delta{t}]$,
+$\tau_1, \tau_2, \dots, \tau_M$ distributed on
+$[t_0, t_1]$,
 and the representation of the solution on this point using the vector
 ${\bf u}=[u(\tau_1), u(\tau_2), \dots, u(\tau_M)]^T$.
 To given nodes is associated a $Q$ matrice used to find the collocation
@@ -24,6 +26,14 @@ $$
 where ${\bf u}_0 = [u_0, u_0, \dots, u_0]^T$ and
 $Q\otimes f$ is the non-linear operator evaluating the matrix vector product between $Q$ and
 $[f(u(\tau_1), \tau_1), [f(u(\tau_2), \tau_2),\dots,[f(u(\tau_M), \tau_M)]^T$.
+
+Finally, the solution at time $t_1$ is computed using the collocation update (or prolongation) :
+
+$$
+u(t_1) = u_0 + \Delta{t}\sum_{m=1}^{M} \omega_m u(\tau_m),
+$$
+
+where $(\omega_m)_{1\leq m \leq M}$ are the weights associated to the collocation nodes.
 
 There is a link between Runge-Kutta method and collocation method in the unconscious scientific culture of applied mathematics, but it seems to have fadded over the years as the people who found it too easy to write it down died progressively. So here is the main question :
 
