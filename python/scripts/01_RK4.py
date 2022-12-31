@@ -28,4 +28,6 @@ coll[3, 2] = -dt*f
 coll[-1, 1] = -sy.Rational(1, 3)*dt*f
 coll[-1, 2] = -sy.Rational(1, 3)*dt*f
 
-# Node-to-node formulation !!!
+# Zero-to-node formulation of a collocation problem !
+
+sy.print_latex(coll[:-1, :-1])
