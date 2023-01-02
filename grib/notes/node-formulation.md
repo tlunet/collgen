@@ -187,6 +187,15 @@ $$
 that is :
 
 $$
-T^{-1} (I - \lambda \Delta{t}Q) = u_0 T^{-1}{\bf e}
+T^{-1} (I - \lambda \Delta{t}Q){\bf u} = u_0 T^{-1}{\bf e}
 = u_0 {\bf e}_1.
 $$
+
+which gives us this Z2N $Q$-matrix form for the collocation problem :
+
+$$
+(I - \lambda \Delta{t}T^{-1}Q - I_L){\bf u}
+= u_0 {\bf e}_1,
+$$
+
+where $I_L$ is a matrix containing only ones on its first lower diagonal.
