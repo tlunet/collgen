@@ -54,4 +54,5 @@ From this can be derived additional research topics that could merge technics us
 
 1. [Runge-Kutta type collocation class](https://github.com/Parallel-in-Time/pySDC/blob/master/pySDC/implementations/sweeper_classes/Runge_Kutta.py) implemented by Thomas in pySDC.
    - Simplified implementation of the $Q$-form generation in [python](./python/collgen/thomas.py)
-   - First investigation [script](./python/scripts/01_RK4.py) for RK4
+   - First investigation [script](./python/scripts/01_RK4.py) (building the matrix, Picard iteration)
+   - First [theoretical note](./grib/notes/rk4.md) (accuracy and stability of Picard Iteration of RK4)
