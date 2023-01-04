@@ -152,4 +152,4 @@ For each iteration $k \in \{1, 2, 3, 4\}$ we plot the accuracy and stability con
 Some first observations :
 
 - Each Picard iteration seems to increase the order of accuracy by one, as we successively get the stability contour of Forward Euler (with  $k=1$), a second order RK method in two stages (with $k=2$), a third order RK method in three stage (with $k=3$) and finally the stability contour of RK4 (with $k=4$).
-- The first Picard iterations are not A-stable, and need several iteration (with $k\geq 3$) to include a part a the imaginary axis (necessary condition to by stable for a fully hyperbolic problem). _Hypothesis_ : this is due to the strictly lower triangular form of the RK4 $Q$-matrix ?
+- The first Picard iterations are not A-stable, and need several iterations (with $k\geq 3$) to include a part a the imaginary axis (necessary condition to be stable for a fully hyperbolic problem). _Hypothesis_ : this is due to the strictly lower triangular form of the RK4 $Q$-matrix ?
