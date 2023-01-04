@@ -10,6 +10,7 @@ import sys
 
 import numpy as np
 import sympy as sy
+import matplotlib.pyplot as plt
 
 sys.path.append(os.path.realpath('../'))
 from collgen.thomas import genCollFromRK
@@ -34,7 +35,7 @@ coll[-1, 2] = -sy.Rational(1, 3)*dt*f
 # sy.print_latex(coll[:-1, :-1])
 
 # Picard iteration
-reLam = np.linspace(-4, 0.5, 501)
+reLam = np.linspace(-3, 0.5, 501)
 imLam = np.linspace(-3, 3, 500)
 lam = reLam[:, None] + 1j*imLam[None, :]
 lamDt = np.ravel(lam)[None, :]
@@ -44,19 +45,28 @@ lamDt = np.ravel(lam)[None, :]
 Qvec = lamDt*Q[..., None]
 Qvec = Qvec.transpose((2,0,1))
 
-nIter = 5
+nIter = 4
 u0 = np.ones(Q.shape[0])
+uPic = np.zeros((nIter+1, Qvec.shape[0], u0.size), dtype=Qvec.dtype)
 
-uPic = u0
+uPic[0] = u0
 for k in range(nIter):
-    uPic = u0 + matVecMul(Qvec, uPic)
+    uPic[k+1] = u0 + matVecMul(Qvec, uPic[k])
 
 uExact = np.exp(lamDt).ravel()
 
-err = np.abs(uExact-uPic[:, -1])  # Comparison with last node
+err = np.abs(uExact-uPic[:, :, -1])  # Comparison with last node
 
-stab = np.abs(uPic[:, -1]).reshape(lam.shape)
-errMax = err.reshape(lam.shape)
+stab = np.abs(uPic[:, :, -1]).reshape((nIter+1, *lam.shape))
+errMax = err.reshape((nIter+1, *lam.shape))
 
 # Plot discretization error on complex plane
-plotAccuracyContour(reLam, imLam, errMax, stab)
+fig, axes = plt.subplots(1, 4)
+axes = axes.ravel()
+for k in range(nIter):
+    plotAccuracyContour(reLam, imLam, errMax[k+1], stab[k+1], axe=axes[k])
+fig.set_size_inches(12.29,  3.15)
+fig.tight_layout()
+fig.tight_layout()
+fig.tight_layout()
+plt.savefig('RK4_Picard.svg')

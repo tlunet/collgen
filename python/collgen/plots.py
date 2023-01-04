@@ -11,7 +11,7 @@ from matplotlib import ticker
 
 def plotAccuracyContour(reLam, imLam, err, stab=None,
                         eMin=-7, eMax=0, nLevels=22,
-                        figName=None):
+                        figName=None, axe=None):
     """
     2D contour plot of an error given in parameters for many complex values
 
@@ -32,7 +32,10 @@ def plotAccuracyContour(reLam, imLam, err, stab=None,
     nLevels : int, optional
         Number of level to show on the contour plot. The default is 22.
     figName : str, optional
-        Name for the generated figure. The default is None.
+        Name for the generated figure (ignored if axe is given).
+        The default is None.
+    axe : plt.AxesSubplot, optional
+        The axes to plot the figure on (by default, uses plt.gca())
     """
     coords = np.meshgrid(reLam.ravel(), imLam.ravel(), indexing='ij')
     levels = np.logspace(eMin, eMax, num=nLevels)
@@ -40,17 +43,22 @@ def plotAccuracyContour(reLam, imLam, err, stab=None,
     err[err > 10**eMax] = 10**eMax
     ticks = [10**(i) for i in range(eMin, eMax+1)]
 
-    plt.figure(figName)
-    plt.contourf(*coords, err, levels=levels, locator=ticker.LogLocator())
-    plt.colorbar(ticks=ticks, format=ticker.LogFormatter())
-    plt.contour(*coords, err, levels=ticks,
+    if axe is None:
+        fig = plt.figure(figName)
+        axe = plt.gca()
+    else:
+        fig = axe.get_figure()
+
+    cm = axe.contourf(*coords, err, levels=levels, locator=ticker.LogLocator())
+    fig.colorbar(cm, ticks=ticks, format=ticker.LogFormatter())
+    axe.contour(*coords, err, levels=ticks,
                 colors='k', linestyles='--', linewidths=0.75)
-    plt.contour(*coords, stab, levels=[1], colors='gray')
-    plt.hlines(0, coords[0].min(), coords[0].max(),
+    axe.contour(*coords, stab, levels=[1], colors='gray')
+    axe.hlines(0, coords[0].min(), coords[0].max(),
                colors='black', linestyles='--')
-    plt.vlines(0, coords[1].min(), coords[1].max(),
+    axe.vlines(0, coords[1].min(), coords[1].max(),
                colors='black', linestyles='--')
-    plt.gca().set_aspect('equal', 'box')
-    plt.xlabel(r'$Re(\lambda)$')
-    plt.ylabel(r'$Im(\lambda)$')
-    plt.tight_layout()
+    axe.set_aspect('equal', 'box')
+    axe.set_xlabel(r'$Re(\lambda)$')
+    axe.set_ylabel(r'$Im(\lambda)$')
+    fig.tight_layout()

@@ -120,3 +120,32 @@ Q = \left[\begin{matrix}
 $$
 
 which is the matrix form implemented in the `RungeKutta` class of `pySDC` by Thomas.
+It shows that the Butcher table of RK4 are simply representing the Zeros-to-Nodes (Z2N) $Q$-matrix formulation of the RK4 method 
+(see [this note](./node-formulation.md)).
+
+## Picard iteration of RK4
+
+We solve the collocation problem built using the full $Q$-matrix of RK4 (containing the final update) by the mean of Picard iteration, that is :
+
+$$
+{\bf u}^{k+1} = {\bf u}_0 + \Delta{t} Q \otimes f {\bf u}^{k},
+$$
+
+with ${\bf u}^0 = {\bf u}_0$.
+This corresponds to solving the preconditionned iteration for the collocation problem
+
+$$
+{\bf u}^{k+1} = {\bf u}^{k} + M^{-1}\left[{\bf u}_0 + (I-\Delta{t}Q\otimes f){\bf u}^k\right]
+$$
+
+using the identity for preconditionner $M$. 
+
+For each iteration $k \in \{1, 2, 3, 4\}$ we plot the accuracy and stability contour in the complex plane, and show them in the following figure 
+(increasing $k$ from left to right) :
+
+![RK4_Picard](./RK4_Picard.svg)
+
+Some first observations :
+
+- Each Picard iteration seems to increase the order of accuracy by one, as we successively get the stability contour of Forward Euler ($k=1$), a second order RK method in two stages ($k=2$), a third order RK method in three stage ($k=3$) and finally the stability contour of RK4 ($k=4$).
+- The first Picard iterations are not A-stable, and need several iteration ($k\geq 3$) to include a part a the imaginary axis (necessary condition to by stable for a fully hyperbolic problem). _Hypothesis_ : this is due to the strictly lower triangular form of the RK4 $Q$-matrix ?

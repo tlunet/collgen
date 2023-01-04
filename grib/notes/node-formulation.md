@@ -1,4 +1,4 @@
-# From Nodes-to-Nodes (N2N) and Zero-to-Nodes (Z2N) formulation
+# Nodes-to-Nodes (N2N) and Zero-to-Nodes (Z2N) formulation
 
 ## Generic Nodes-to-Nodes formulation
 
@@ -191,7 +191,7 @@ T^{-1} (I - \lambda \Delta{t}Q){\bf u} = u_0 T^{-1}{\bf e}
 = u_0 {\bf e}_1.
 $$
 
-which gives us this Z2N $Q$-matrix form for the collocation problem :
+which gives us this N2N $Q$-matrix form for the collocation problem :
 
 $$
 (I - \lambda \Delta{t}T^{-1}Q - I_L){\bf u}
