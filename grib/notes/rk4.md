@@ -51,12 +51,13 @@ $$
 0 & \\
 1/2 & 1/2 \\
 1/2 & 0 & 1/2 \\
-1 & 0 & 0 & 1 \\\hline
-  & 1/6 & 1/3 & 1/3 & 1/6
+1 & 0 & 0 & 1 \\ 
+\hline
+& 1/6 & 1/3 & 1/3 & 1/6
 \end{array}
 $$
 
-where each line in the upper par correspond to a "node" solution $u_m$, and the lower par corresponds to a "prolongation"
+where each line in the upper par correspond to a "node" solution $u_m$, and the lower part corresponds to a "prolongation"
 
 ## Q-matrix form
 
@@ -84,19 +85,22 @@ $$
 which is written in condensed form :
 
 $$
-\left[\begin{matrix}
-1 & 0 & 0 & 0 \\
-- \frac{\Delta{t} f}{2} & 1 & 0 & 0 \\
-0 & - \frac{\Delta{t} f}{2} & 1 & 0 \\
-0 & 0 & - \Delta{t} f & 1
-\end{matrix}\right]
-\begin{pmatrix}
-u_1 \\ u_2 \\ u_3 \\ u_4
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    -\frac{\Delta{t} f}{2} & 1 & 0 & 0 \\
+    0 & - \frac{\Delta{t} f}{2} & 1 & 0 \\
+    0 & 0 & - \Delta{t} f & 1 \\
+\end{bmatrix}\begin{pmatrix}
+    u_1 \\ 
+    u_2 \\ 
+    u_3 \\ 
+    u_4 \\
+\end{pmatrix} = \begin{pmatrix}
+    u_0 \\ 
+    u_0 \\ 
+    u_0 \\ 
+    u_0 \\
 \end{pmatrix}
-=
-\begin{pmatrix}
-u_0 \\ u_0 \\ u_0 \\ u_0
-\end{pmatrix},
 $$
 
 where any $f$ term in the matrix correspond to the evaluation of a "node" solution $u_m$ at its corresponding time $t_0 + \Delta{t}\tau_m$.
@@ -104,10 +108,11 @@ Finally, the prolongation (or final update) is computed to retrieve the final so
 
 $$
 u_{n+1} = u_n + \frac{\Delta{t}}{6}[
-    f(u_1, t_1) + 2f(u_2, t_2) + 2f(u_3, t_3) + f(u_4, t_4)]
+f(u_1, t_1) + 2f(u_2, t_2) + 2f(u_3, t_3) + f(u_4, t_4)
+]
 $$
 
-Note that final update can be included into the $Q$-matrix formulation by addind $u_t$ to the node vector, and writing
+Note that final update can be included into the $Q$-matrix formulation by addind $u_t$ to the node vector and writing
 
 $$
 Q = \left[\begin{matrix}
@@ -116,7 +121,7 @@ Q = \left[\begin{matrix}
 0 & 1/2 & 0 & 0 & 0 \\
 0 & 0 & 1 & 0 & 0 \\
 1/6 & 1/3, & 1/3 & 1/6 & 0
-\end{matrix}\right]
+\end{matrix}\right],
 $$
 
 which is the matrix form implemented in the `RungeKutta` class of `pySDC` by Thomas.
@@ -128,11 +133,10 @@ It shows that the Butcher table of RK4 are simply representing the Zeros-to-Node
 We solve the collocation problem built using the full $Q$-matrix of RK4 (containing the final update) by the mean of Picard iteration, that is :
 
 $$
-{\bf u}^{k+1} = {\bf u}_0 + \Delta{t} Q \otimes f {\bf u}^{k},
+{\bf u}^{k+1} = {\bf u}_0 + \Delta{t} Q \otimes f {\bf u}^{k}, \text{ with } {\bf u}^0 = {\bf u}_0.
 $$
 
-with ${\bf u}^0 = {\bf u}_0$.
-This corresponds to solving the preconditionned iteration for the collocation problem
+This corresponds to computing the preconditionned iteration for the collocation problem
 
 $$
 {\bf u}^{k+1} = {\bf u}^{k} + M^{-1}\left[{\bf u}_0 + (I-\Delta{t}Q\otimes f){\bf u}^k\right]
@@ -147,5 +151,5 @@ For each iteration $k \in \{1, 2, 3, 4\}$ we plot the accuracy and stability con
 
 Some first observations :
 
-- Each Picard iteration seems to increase the order of accuracy by one, as we successively get the stability contour of Forward Euler ($k=1$), a second order RK method in two stages ($k=2$), a third order RK method in three stage ($k=3$) and finally the stability contour of RK4 ($k=4$).
-- The first Picard iterations are not A-stable, and need several iteration ($k\geq 3$) to include a part a the imaginary axis (necessary condition to by stable for a fully hyperbolic problem). _Hypothesis_ : this is due to the strictly lower triangular form of the RK4 $Q$-matrix ?
+- Each Picard iteration seems to increase the order of accuracy by one, as we successively get the stability contour of Forward Euler (with  $k=1$), a second order RK method in two stages (with $k=2$), a third order RK method in three stage (with $k=3$) and finally the stability contour of RK4 (with $k=4$).
+- The first Picard iterations are not A-stable, and need several iteration (with $k\geq 3$) to include a part a the imaginary axis (necessary condition to by stable for a fully hyperbolic problem). _Hypothesis_ : this is due to the strictly lower triangular form of the RK4 $Q$-matrix ?
