@@ -139,7 +139,7 @@ $$
 This corresponds to computing the preconditionned iteration for the collocation problem
 
 $$
-{\bf u}^{k+1} = {\bf u}^{k} + M^{-1}\left[{\bf u}_0 + (I-\Delta{t}Q\otimes f){\bf u}^k\right]
+{\bf u}^{k+1} = {\bf u}^{k} + M^{-1}\left[{\bf u}_0 - (I-\Delta{t}Q\otimes f){\bf u}^k\right]
 $$
 
 using the identity for preconditionner $M$. 
