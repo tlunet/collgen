@@ -96,7 +96,7 @@ fixed point theorem, we get that a solution exists. I guess that is enough? Or m
 (That's why I wrote $f$ has to be continuously differentiable). This part is a bit in the air... source: 
 https://www.epfl.ch/labs/anchp/wp-content/uploads/2018/05/part2-1.pdf
 
-# The collocatoin matrix
+# The collocation matrix
 
 Now, let ${\bf Q}$ be a collocation matrix, meaning 
 
@@ -104,7 +104,7 @@ $$
 [Q]_{ij} := \int_{t_n}^{\tau_i} c_j(x)dx,
 $$ 
 
-where $c_j$ are the Lagrange interpolation polynomials defined in points $\tau_1, \dots, \tau_s$. Let us now examine what does 
+where $c_j$ are the Lagrange interpolation polynomials defined in points $\tau_1 < \dots < \tau_s$. Let us now examine what does 
 $\bf Q$ do to a vector $(\tau_1^m, \dots, \tau_s^m)$, for $0 \leq m \leq s-1$. We have
 
 $$
