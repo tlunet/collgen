@@ -58,27 +58,24 @@ $$
 All together, written line by line in a matrix formulation, we have
 
 $$
-\begin{equation*}
-  \begin{bmatrix}
-  u_1 \\
-  u_2 \\
-  \vdots \\
-  u_s 
-  \end{bmatrix}  =
-  \begin{bmatrix}
-  y_n \\
-  y_n \\
-  \vdots \\
-  y_n
-  \end{bmatrix}
-  + \Delta t {\bf A}
-  \begin{bmatrix}
-      f(\tau_1, u_1) \\
-      f(\tau_2, u_2) \\
-      \vdots \\
-      f(\tau_s, u_s)
-  \end{bmatrix}
-\end{equation*},
+ \begin{bmatrix}
+ u_1 \\
+ u_2 \\
+ \vdots \\
+ u_s 
+ \end{bmatrix}=
+ \begin{bmatrix}
+ y_n \\
+ y_n \\
+ \vdots \\
+ y_n
+ \end{bmatrix} + \Delta t {\bf A}
+ \begin{bmatrix}
+     f(\tau_1, u_1) \\
+     f(\tau_2, u_2) \\
+     \vdots \\
+     f(\tau_s, u_s)
+ \end{bmatrix},
 $$
 
 where we define $\tau_i = t_n + c_i \Delta t$. If we look more closely, that is exactly the formulation of the collocation problem, 
