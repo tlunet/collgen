@@ -2,7 +2,7 @@
 Let 
 
 $$
-y_t = f(t, y), \,y_0 = y(0),
+y_t = f(t, y), y_0 = y(0),
 $$
 
 where $f$ is continuously differentiable. Let $t_n = n\Delta t$ be the discretization of the time domain and $y_n \approx y(t_n)$.
