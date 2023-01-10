@@ -122,7 +122,7 @@ $$
     \int_{t_n}^{\tau_s} \sum_j \tau_j^m c_j(x)dx
 \end{bmatrix}=
 \begin{bmatrix}
-    c \\
+    \int_{t_n}^{\tau_1} p^{(m)}(x)dx \\
     \int_{t_n}^{\tau_2} p^{(m)}(x)dx \\
     \vdots \\
     \int_{t_n}^{\tau_s} p^{(m)}(x)dx
@@ -137,6 +137,6 @@ $$
 \int_{t_n}^{\tau_i} p^{(m)}(x)dx = \int_{0}^{\tau_i} x^m dx = \frac{\tau_i^{m+1}}{m+1}.
 $$
 
-Now, if we want the matrix $\bf A$ to be a collocation matrix, it is evident that the upper condition must be satisfied.
+If we want the matrix $\bf A$ to be a collocation matrix, it is evident that the upper condition must be satisfied.
 This proves the theorem 1.1.1 from the 'Collocation Methods for Volterra Integral
 and Related Functional Equations' which is expressing when can the IRK method be obtained by collocation.
