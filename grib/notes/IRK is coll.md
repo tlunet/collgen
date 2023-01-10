@@ -138,5 +138,6 @@ $$
 $$
 
 If we want the matrix $\bf A$ to be a collocation matrix, it is evident that the upper condition must be satisfied.
+Another condition is that $\tau_i$ have to be distinct, otherwise we cannot form the polynomial Lagrange basis.
 This proves the theorem 1.1.1 from the 'Collocation Methods for Volterra Integral
 and Related Functional Equations' which is expressing when can the IRK method be obtained by collocation.
