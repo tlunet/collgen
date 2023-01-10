@@ -42,6 +42,7 @@ $$
 $$
 
 ## Change of variables
+
 Now, let us define 
 
 $$
@@ -63,8 +64,7 @@ $$
   u_2 \\
   \vdots \\
   u_s 
-  \end{bmatrix}
-  =
+  \end{bmatrix}  =
   \begin{bmatrix}
   y_n \\
   y_n \\
@@ -100,6 +100,7 @@ fixed point theorem, we get that a solution exists. I guess that is enough? Or m
 https://www.epfl.ch/labs/anchp/wp-content/uploads/2018/05/part2-1.pdf
 
 # The collocatoin matrix
+
 Now, let ${\bf Q}$ be a collocation matrix, meaning 
 
 $$
@@ -116,15 +117,13 @@ $$
     \tau_2^m \\
     \vdots \\
     \tau_s^m
-\end{bmatrix}
-= 
+\end{bmatrix}= 
 \begin{bmatrix}
     \int_{t_n}^{\tau_1} \sum_j \tau_j^m c_j(x)dx \\
     \int_{t_n}^{\tau_2} \sum_j \tau_j^m c_j(x)dx \\
     \vdots \\
     \int_{t_n}^{\tau_s} \sum_j \tau_j^m c_j(x)dx
-\end{bmatrix}
-=
+\end{bmatrix}=
 \begin{bmatrix}
     c \\
     \int_{t_n}^{\tau_2} p^{(m)}(x)dx \\
